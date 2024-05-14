@@ -8,10 +8,10 @@ const schme = buildSchema(`
         price: Int
         language: String
         email: String
-        teachingAssists: [TeachAssists]
+        teachingAssists: [TeachingAssists]
     }
 
-    type TeachAssists {
+    type TeachingAssists {
         firstName: String
         lastName: String
         experience: Int
@@ -25,6 +25,25 @@ const schme = buildSchema(`
 
     type Query {
         getCourse(id): Course
-        
+    }
+
+    input CourseInput {
+        id: ID
+        coursName: String!
+        category: String
+        price: Int!
+        language: String
+        email: String
+        stack: Stack
+        teachingAssists: [TeachingAssists]
+    }
+    input InputTeachingAssists{
+        firstName: String
+        lastName: String
+        experience: Int
+    }
+
+    type Mutation {
+        createCourse(input: CourseInput): Course
     }
 `)
