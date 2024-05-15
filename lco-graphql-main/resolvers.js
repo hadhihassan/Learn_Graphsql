@@ -13,3 +13,15 @@ class Course {
         this.teachingAssists = teachingAssists;
     }
 }
+const courseholoderr = {}
+
+const resolvers = {
+    getCourse: ({ id }) => {
+        return new Course(id, courseholoder[id])
+    },
+    createCourse: ({ input }) => {
+        let id = nanoid();
+        courseholoder[id] = input;
+        return new Course(id, input)
+    }
+}
