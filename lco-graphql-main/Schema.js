@@ -1,9 +1,9 @@
 import { buildSchema } from 'graphql'
 
-const schme = buildSchema(`
+const schema = buildSchema(`
     type Course {
         id: ID
-        coursName: String
+        courseName: String
         category: String
         price: Int
         language: String
@@ -24,20 +24,21 @@ const schme = buildSchema(`
     }
 
     type Query {
-        getCourse(id): Course
+        getCourse(id: ID): Course
     }
 
     input CourseInput {
         id: ID
-        coursName: String!
+        courseName: String!
         category: String
         price: Int!
         language: String
         email: String
         stack: Stack
-        teachingAssists: [TeachingAssists]
+        teachingAssists: [InputTeachingAssists]
     }
-    input InputTeachingAssists{
+
+    input InputTeachingAssists {
         firstName: String
         lastName: String
         experience: Int
@@ -46,4 +47,6 @@ const schme = buildSchema(`
     type Mutation {
         createCourse(input: CourseInput): Course
     }
-`)
+`);
+
+export default schema;

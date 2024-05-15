@@ -1,9 +1,7 @@
-import { nanoid } from 'nanoid';
+import { buildSchema } from 'graphql';
 
 class Course {
-    constructor(id, {
-        courseName, category, price, language, email, teachingAssists
-    }) {
+    constructor(id, { courseName, category, price, language, email, teachingAssists }) {
         this.id = id;
         this.courseName = courseName;
         this.category = category;
@@ -13,15 +11,24 @@ class Course {
         this.teachingAssists = teachingAssists;
     }
 }
-const courseholoderr = {}
+
+const courseholder = {};
 
 const resolvers = {
     getCourse: ({ id }) => {
-        return new Course(id, courseholoder[id])
+        return new Course(id, courseholder[id]);
     },
     createCourse: ({ input }) => {
-        let id = nanoid();
-        courseholoder[id] = input;
-        return new Course(id, input)
+        try {
+            let id = "23213KNJKNCJDSN";
+            courseholder[id] = input;
+            console.log(courseholder);
+            return new Course(id, input);
+        } catch (error) {
+            console.error('Error creating course:', error);
+            return null;
+        }
     }
-}
+};
+
+export default resolvers;
